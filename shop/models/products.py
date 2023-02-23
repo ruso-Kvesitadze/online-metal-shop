@@ -1,7 +1,6 @@
 from shop.extensions import db 
 from shop.models.base import BaseModel
 
-
 class Shirt(BaseModel):
     __tablename__ = "shirts"
 

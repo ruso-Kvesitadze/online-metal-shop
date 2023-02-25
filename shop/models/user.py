@@ -9,3 +9,4 @@ class User(BaseModel):
     mobile_number = db.Column(db.String)
     mail = db.Column(db.String)
     password = db.Column(db.String)
+    roles = db.Column(db.String)

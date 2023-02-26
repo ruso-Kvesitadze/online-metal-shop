@@ -1,0 +1,30 @@
+
+.link{
+   text-align: left;
+}
+.link a{
+    background: -webkit-linear-gradient(#0059ff, #ffe600);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 0.3s;
+}
+.link a:hover{
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "myfont";
+    src: url(regular.ttf);
+}
+
+.fontchanger{
+    font-family: "myfont", sans-serif;
+}
+.gradientcolor{
+    background: -webkit-linear-gradient(#0059ff, #ffe600);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:20px;
+}

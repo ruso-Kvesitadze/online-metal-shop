@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item gradientcolor">
-            <a class="nav-link {{is_active(request.endpoint, 'home.home')}}" aria-current="page" href="#" style="color:white">Home</a>
+            <a class="nav-link {{is_active(request.endpoint, 'main.home')}}" aria-current="page" href="{{url_for('main.home')}}" style="color:white">Home</a>
           </li>
           <li class="nav-item gradientcolor">
             <a class="nav-link" href="#" style="color:white">Link</a>

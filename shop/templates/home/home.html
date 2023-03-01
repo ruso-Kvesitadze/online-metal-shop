@@ -42,8 +42,18 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">{{product.name}} {{product.type}}</h5>
-                    <p class="card-text">Price: {{product.price}} Gel</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>               
+                    <h6 class="card-text">Price: {{product.price}} Gel</h6>
+                    <h6><div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="{{product.id}}1" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="{{product.id}}1">S</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio" id="{{product.id}}2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="{{product.id}}2">M</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio" id="{{product.id}}3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="{{product.id}}3">L</label>
+                        </div></h6>          
+                    <h6 class="card-text"><input type="submit"></h6>    
                 </div>
             </div>
         </div>

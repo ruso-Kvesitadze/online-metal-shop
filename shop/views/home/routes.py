@@ -3,7 +3,7 @@ from flask_login import current_user
 from shop.models import Product
 home_blueprint = Blueprint("main", __name__, template_folder="templates")
 
-@home_blueprint.route("/")
+@home_blueprint.route("/", methods = ["GET", "POST"])
 def home():
     product  = Product.query.all()
     print(f"{product} hi")

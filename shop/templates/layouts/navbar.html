@@ -1,7 +1,7 @@
 {% from "macros/macros.html" import is_active%}
 <nav class="navbar navbar-expand-lg bg-body-tertiary p-3 mb-2 bg-dark text-white">
     <div class="container-fluid" >
-      <a class="nav-item gradientcolor" href="#" >Account</a>
+      <a class="nav-item gradientcolor" href="#" >My account</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -11,7 +11,10 @@
             <a class="nav-link {{is_active(request.endpoint, 'main.home')}}" aria-current="page" href="{{url_for('main.home')}}" style="color:white">Home</a>
           </li>
           <li class="nav-item gradientcolor">
-            <a class="nav-link" href="#" style="color:white">Link</a>
+            <a class="nav-link" href="#" style="color:white">Register</a>
+          </li>
+          <li class="nav-item gradientcolor">
+            <a class="nav-link" href="#" style="color:white">Log in</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle gradientcolor" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white">

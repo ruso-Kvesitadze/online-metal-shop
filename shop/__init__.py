@@ -1,11 +1,11 @@
 from flask import Flask
 from shop.config import Config 
-
 from shop.extensions import db , migrate
 from shop.commands import init_db, populate_db
 from shop.views.home.routes import home_blueprint
+from shop.views.authentication.routes import authentication_blueprint
 COMMANDS = [init_db, populate_db]
-BLUEPRINTS = [home_blueprint]
+BLUEPRINTS = [home_blueprint,authentication_blueprint]
 
 
 def create_app():

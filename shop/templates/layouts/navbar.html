@@ -11,7 +11,7 @@
             <a class="nav-link {{is_active(request.endpoint, 'main.home')}}" aria-current="page" href="{{url_for('main.home')}}" style="color:white">Home</a>
           </li>
           <li class="nav-item gradientcolor">
-            <a class="nav-link" href="#" style="color:white">Register</a>
+            <a class="nav-link" href="{{url_for('authentication.registration')}}" style="color:white">Register</a>
           </li>
           <li class="nav-item gradientcolor">
             <a class="nav-link" href="#" style="color:white">Log in</a>

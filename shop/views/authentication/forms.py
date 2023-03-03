@@ -10,7 +10,7 @@ class RegisterForm(FlaskForm):
         message="Email is required"), Email(message="Please enter valid email")])
     password = PasswordField("Enter password", validators=[
                              DataRequired(message="Password is required")])
-    confirmation = PasswordField("Confrim password", validators=[DataRequired("confirm password required"),
+    confirmation = PasswordField("Enter your password again", validators=[DataRequired("confirm password required"),
                                                                  equal_to("password", message="Passwords do not match")])
     submit = SubmitField()
 

@@ -1,9 +1,10 @@
 from flask import Flask
 from shop.config import Config 
-from shop.extensions import db , migrate
+from shop.extensions import db , migrate, login_manager
 from shop.commands import init_db, populate_db
 from shop.views.home.routes import home_blueprint
 from shop.views.authentication.routes import authentication_blueprint
+from shop.models import User
 COMMANDS = [init_db, populate_db]
 BLUEPRINTS = [home_blueprint,authentication_blueprint]
 
@@ -26,7 +27,12 @@ def register_blueprint(app):
 def register_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db)
+    login_manager.init_app(app)
+    login_manager.login_view = "login.login"
 
+    @login_manager.user_loader
+    def load_user(_id):
+        return User.query.get(_id)
     
 def register_commands(app):
     for command in COMMANDS:

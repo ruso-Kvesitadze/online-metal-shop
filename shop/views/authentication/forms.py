@@ -16,10 +16,10 @@ class RegisterForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = StringField("Enter your username", validators=[
-        DataRequired(message="username is required")])
+    # username = StringField("Enter your username or email", validators=[
+    #     DataRequired(message="username or email is required")])
     email = StringField("Enter your mail", validators=[
-                        DataRequired(message="You can't log in without mail")])
+                        DataRequired(message=" username or mail is required")])
     password = PasswordField("Enter your password",
                              validators=[DataRequired()])
     submit = SubmitField()

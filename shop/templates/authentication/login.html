@@ -1,5 +1,32 @@
+
 {% extends "layouts/base.html" %}
 {% block content %}
+<h1 class="gradientcolor fontchanger" style="text-align: center; color:rgb(8, 180, 192); font-size:90px;">Log into your account </h1>
+<div style="text-align: center;">
+    {% for field,error in loginform.errors.items() %}
+    <div class="gradientcolor" role="alert">
+        {{ error[0] }}
+    </div>
+    {% endfor %}
+
+    {% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+    <div class="alert alert-info" role="alert">
+        {{ message }}
+    </div>
+    {%endfor%}
+    {% endwith %}
+<form  method="post"  enctype="multipart/form-data" style="margin-top: 25px;">
+    {{ loginform.hidden_tag() }}
+    {{ loginform.email (class="backgroundgradient", placeholder = loginform.email.label.text) }} <br>
+    {{ loginform.password (class="backgroundgradient", placeholder = loginform.password.label.text)}}<br>    <br>
+    {{ loginform.submit (value="Log in",class="backgroundgradient",style="width:200px;") }}
+
+</form><br>
+
+</div>
+
+
 
 
 {% endblock %}

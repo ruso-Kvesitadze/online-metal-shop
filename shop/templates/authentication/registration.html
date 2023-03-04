@@ -10,7 +10,7 @@
 
     {% with messages = get_flashed_messages() %}
     {% for message in messages %}
-    <div class="alert alert-info" role="alert">
+    <div class="gradientcolor" style="margin-bottom: 10px;" role="alert">
         {{ message }}
     </div>
     {%endfor%}
@@ -26,7 +26,7 @@
     {{ registerform.submit (value="Register",class="backgroundgradient",style="width:200px;") }}
 
 </form><br>
-
 </div>
+
 
 {% endblock %}

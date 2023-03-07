@@ -32,7 +32,7 @@ def registration():
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
-        user = User.query.filter_by(email=login_form.email.data).first()
+        user = User.query.filter(or_(User.email ==login_form.username_or_email.data, User.username == login_form.username_or_email.data )).first()
         next = request.args.get("next")
         if user and user._check_password(login_form.password.data):
             print(next)
@@ -42,3 +42,8 @@ def login():
         print(login_form.errors)
 
     return render_template("authentication/login.html", loginform=login_form)
+
+@authentication_blueprint.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("main.home"))

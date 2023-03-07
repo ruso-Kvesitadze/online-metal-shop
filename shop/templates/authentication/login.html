@@ -18,7 +18,7 @@
     {% endwith %}
 <form  method="post"  enctype="multipart/form-data" style="margin-top: 25px;">
     {{ loginform.hidden_tag() }}
-    {{ loginform.email (class="backgroundgradient", placeholder = loginform.email.label.text) }} <br>
+    {{ loginform.username_or_email (class="backgroundgradient", placeholder = loginform.username_or_email.label.text) }} <br>
     {{ loginform.password (class="backgroundgradient", placeholder = loginform.password.label.text)}}<br>    <br>
     {{ loginform.submit (value="Log in",class="backgroundgradient",style="width:200px;") }}
 

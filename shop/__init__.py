@@ -1,6 +1,6 @@
 from flask import Flask
 from shop.config import Config 
-from shop.extensions import db , migrate, login_manager
+from shop.extensions import db , migrate, login_manager, mail
 from shop.commands import init_db, populate_db
 from shop.views.home.routes import home_blueprint
 from shop.views.authentication.routes import authentication_blueprint
@@ -27,6 +27,7 @@ def register_blueprint(app):
 def register_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db)
+    mail.init_app(app)
     login_manager.init_app(app)
     login_manager.login_view = "login.login"
 

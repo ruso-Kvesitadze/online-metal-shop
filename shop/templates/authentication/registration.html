@@ -3,8 +3,8 @@
 <h1 class="gradientcolor fontchanger" style="text-align: center; color:rgb(8, 180, 192); font-size:90px;">Register here </h1>
 <div style="text-align: center;">
     {% for field,error in registerform.errors.items() %}
-    <div class="alert alert-danger" role="alert">
-        {{ error }}
+    <div class="gradientcolor"  style="margin-bottom: 10px;" role="alert">
+        {{ error[0] }}
     </div>
     {% endfor %}
 

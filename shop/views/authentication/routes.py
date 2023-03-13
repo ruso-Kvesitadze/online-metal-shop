@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from shop.extensions import mail
-from shop.views.authentication.forms import RegisterForm, LoginForm
+from shop.views.authentication.forms import RegisterForm, LoginForm, PasswordRecoveryForm, ResetPasswordForm
 from shop.emails import  send_email, create_key, confirm_key
 from flask_login import login_user, logout_user
 from sqlalchemy import or_
@@ -10,7 +10,7 @@ from shop.models import User
 authentication_blueprint = Blueprint(
     "authentication", __name__, template_folder="templates")
 
-
+#registration
 @authentication_blueprint.route("/registration", methods=["GET", "POST"])
 def registration():
     register_form = RegisterForm()
@@ -34,7 +34,7 @@ def registration():
         print(register_form.errors)
     return render_template("authentication/registration.html", registerform=register_form)
 
-
+#login
 @authentication_blueprint.route("/login", methods=["GET", "POST"])
 def login():
     login_form = LoginForm()
@@ -50,6 +50,7 @@ def login():
 
     return render_template("authentication/login.html", loginform=login_form)
 
+#email confiramtion
 @authentication_blueprint.route("/confirm_email/<string:key>", methods=["GET", "POST"])
 def confirm_email(key):
     email = confirm_key(key)
@@ -61,6 +62,39 @@ def confirm_email(key):
     else:
         return "Wrong secret key or expired, or already confirmed"
 
+#forgot password
+@authentication_blueprint.route("/forgot_password", methods=['GET', 'POST'])
+def forgot_password():
+    recovery_form = PasswordRecoveryForm()
+    if recovery_form.validate_on_submit():
+        user = User.query.filter_by(email=recovery_form.email.data).first()
+        if user:
+            user.reset_password = True
+            reset_key = create_key(recovery_form.email.data)
+            html = render_template('authentication/_reset_message.html', key=reset_key)
+            send_email("Reset your password", html, recovery_form.email.data)
+            user.save()
+            return "You have been emailed password reset link"
+    return render_template('authentication/forgot_password.html', recoveryform=recovery_form)
+
+#reset password
+@authentication_blueprint.route("/reset_password/<string:key>", methods=['GET', 'POST'])
+def reset_password(key):
+    reset_form = ResetPasswordForm()
+    email = confirm_key(key)
+    user = User.query.filter_by(email=email).first()
+
+    if not user: return "Wrong secret key or expired, or already confirmed"
+    if not user.reset_password: return "Password already reset"
+
+    if reset_form.validate_on_submit():
+        user.password = reset_form.password.data
+        user.reset_password = False
+        user.save()
+        return redirect(url_for('authentication.login'))
+    return render_template("authentication/reset_password.html", resetform=reset_form)
+
+#logout
 @authentication_blueprint.route("/logout")
 def logout():
     logout_user()

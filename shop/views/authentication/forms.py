@@ -21,3 +21,13 @@ class LoginForm(FlaskForm):
     password = PasswordField("Enter your password",
                              validators=[DataRequired()])
     submit = SubmitField()
+
+class PasswordRecoveryForm(FlaskForm):
+    email = EmailField('Email', [DataRequired(), Email()])
+    submit = SubmitField('Reset')
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('New Password',[DataRequired()])
+    confirm_password = PasswordField('Repeat password', [DataRequired(), equal_to('password')])
+    submit = SubmitField('Reset')

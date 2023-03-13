@@ -14,6 +14,7 @@ class User(BaseModel, UserMixin):
     card_info = db.Column(db.String)
     mobile_number = db.Column(db.String)
     confirmed = db.Column(db.Boolean , default = False)
+    reset_password = db.Column(db.Boolean , default = False)
 
     def _get_password(self):
         return self._password

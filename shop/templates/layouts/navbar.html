@@ -33,7 +33,7 @@
             <a class="nav-link nav-item gradientcolor" href="{{url_for('authentication.login')}}" style="color:white">Log in</a>
           </li>
           {% else%}
-            <a class="nav-item gradientcolor" style="color:white; margin-right:10px;" href="#">My account</a>
+            <a class="nav-item gradientcolor" style="color:white; margin-right:10px;" href="{{url_for('user_account.user_account')}}">My account</a>
             <a class="nav-link nav-item gradientcolor" href="{{url_for('authentication.logout')}}" style="color:white">Log out </a>
 
           {%endif%}

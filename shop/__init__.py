@@ -4,9 +4,11 @@ from shop.extensions import db , migrate, login_manager, mail
 from shop.commands import init_db, populate_db
 from shop.views.home.routes import home_blueprint
 from shop.views.authentication.routes import authentication_blueprint
+from shop.views.user_account.routes import user_account_blueprint
 from shop.models import User
+
 COMMANDS = [init_db, populate_db]
-BLUEPRINTS = [home_blueprint,authentication_blueprint]
+BLUEPRINTS = [home_blueprint,authentication_blueprint,user_account_blueprint]
 
 
 def create_app():
@@ -29,7 +31,7 @@ def register_extensions(app):
     migrate.init_app(app, db)
     mail.init_app(app)
     login_manager.init_app(app)
-    login_manager.login_view = "login.login"
+    login_manager.login_view = "authentication.login"
 
     @login_manager.user_loader
     def load_user(_id):

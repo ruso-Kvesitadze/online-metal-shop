@@ -1,11 +1,30 @@
-
 {% extends "layouts/base.html" %}
 {% block content %}
-<div style="text-align:center;" >
-<h1></h1>
-<div class="container container_style bg-dark">
-    hi
-</div>
+<div style="text-align:center;">
+
+    <div class="container container_style bg-dark" style="margin-top:40px; border-radius:15px;">
+        <h1 class="fontchanger gradientcolor" style="text-align: center; font-size:80px;">My Account</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            {{ userform.hidden_tag() }}
+            <label for="username">{{userform.username.label (class="fontchanger gradientcolor ") }}</label><br>
+            {{ userform.username (class="backgroundgradient",id="username", value = current_user.username)}} <br>
+            <label for="email">{{userform.email.label (class="fontchanger gradientcolor ") }}</label><br>
+            {{ userform.email (class="backgroundgradient", id="email", value = current_user.email)}}<br>
+
+            <label for="mobilenum">{{userform.mobile_number.label (class="fontchanger gradientcolor ") }}</label><br>
+
+            {{ userform.mobile_number (class="backgroundgradient", id="mobilenum", value =
+            current_user.mobile_number)}}<br>
+            <label for="cardinfo">{{userform.card_info.label (class="fontchanger gradientcolor ") }}</label><br>
+
+            {{ userform.card_info (class="backgroundgradient", id="cardinfo", value = current_user.card_info)}}
+            <br>
+            {{ userform.submit (value="Save your info",class="backgroundgradient",style="width:200px; margin-top:15px;")
+            }}
+
+        </form><br>
+    </div>
 
 </div>
 

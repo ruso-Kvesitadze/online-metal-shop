@@ -13,6 +13,7 @@ class User(BaseModel, UserMixin):
     roles = db.Column(db.String)
     card_info = db.Column(db.String)
     mobile_number = db.Column(db.String)
+    order_id = db.Column(db.Integer, db.ForeignKey("order.id"))
     confirmed = db.Column(db.Boolean , default = False)
     reset_password = db.Column(db.Boolean , default = False)
 

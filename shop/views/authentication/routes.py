@@ -26,6 +26,7 @@ def registration():
             user.create()
             user.save()
             flash("Succesfully Registered")
+            flash("You have been sent confirmation email, please check it before it expires!")
 
             key = create_key(register_form.email.data)
             html = render_template('authentication/_activation_message.html', key=key)

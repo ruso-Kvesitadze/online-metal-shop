@@ -8,5 +8,4 @@ class Order(BaseModel):
     product_name = db.Column(db.String)
     size = db.Column(db.String) 
 
-    ordered_by = db.Column(db.Integer, db.ForeignKey("registered_users.id"))
     user = db.relationship("User", backref = "orders")

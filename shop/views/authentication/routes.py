@@ -80,7 +80,9 @@ def forgot_password():
             html = render_template('authentication/_reset_message.html', key=reset_key)
             send_email("Reset your password", html, recovery_form.email.data)
             user.save()
-            return "You have been emailed password reset link"
+            flash( "You have been emailed password reset link" )
+        elif not user:
+            flash("User wasn't found with this email. Please register first!")
     return render_template('authentication/forgot_password.html', recoveryform=recovery_form)
 
 #reset password
@@ -90,8 +92,8 @@ def reset_password(key):
     email = confirm_key(key)
     user = User.query.filter_by(email=email).first()
 
-    if not user: return "Wrong secret key or expired, or already confirmed"
-    if not user.reset_password: return "Password already reset"
+    if not user: flash( "Wrong secret key or expired, or already confirmed" )
+    if not user.reset_password: flash ( "Password already reset" )
 
     if reset_form.validate_on_submit():
         user.password = reset_form.password.data

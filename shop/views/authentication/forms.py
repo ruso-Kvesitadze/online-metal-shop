@@ -23,7 +23,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField()
 
 class PasswordRecoveryForm(FlaskForm):
-    email = EmailField('Email', [DataRequired(), Email()])
+    email = EmailField('Please enter your email ', [DataRequired(), Email()])
     submit = SubmitField('Reset')
 
 

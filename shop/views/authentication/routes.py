@@ -41,12 +41,18 @@ def login():
     if login_form.validate_on_submit():
         user = User.query.filter(or_(User.email ==login_form.username_or_email.data, User.username == login_form.username_or_email.data )).first()
         next = request.args.get("next")
+
         if user and user._check_password(login_form.password.data):
             print(next)
             login_user(user)
-        return redirect(url_for('main.home'))
+            return redirect(url_for('main.home'))
+        elif not user :
+            flash ( "There's no account found with such email or username" )
+        else:
+            flash("Username, email or password is incorrect")
     else:
         print(login_form.errors)
+        print("im idk")
 
     return render_template("authentication/login.html", loginform=login_form)
 
@@ -60,7 +66,7 @@ def confirm_email(key):
         user.save()
         return redirect(url_for('main.home'))
     else:
-        return "Wrong secret key or expired, or already confirmed"
+        flash ( "Wrong secret key or expired, or already confirmed" )
 
 #forgot password
 @authentication_blueprint.route("/forgot_password", methods=['GET', 'POST'])

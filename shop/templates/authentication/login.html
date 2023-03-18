@@ -11,11 +11,12 @@
 
     {% with messages = get_flashed_messages() %}
     {% for message in messages %}
-    <div class="alert alert-info" role="alert">
+    <div class="gradientcolor" style="margin-bottom: 10px; text-align:center;" >
         {{ message }}
     </div>
     {%endfor%}
     {% endwith %}
+
 <form  method="post"  enctype="multipart/form-data" style="margin-top: 25px;">
     {{ loginform.hidden_tag() }}
     {{ loginform.username_or_email (class="backgroundgradient", placeholder = loginform.username_or_email.label.text) }} <br>

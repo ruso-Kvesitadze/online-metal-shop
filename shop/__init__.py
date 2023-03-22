@@ -5,10 +5,11 @@ from shop.commands import init_db, populate_db
 from shop.views.home.routes import home_blueprint
 from shop.views.authentication.routes import authentication_blueprint
 from shop.views.user_account.routes import user_account_blueprint
+from shop.views.filters.routes import filter_blueprint
 from shop.models import User
 
 COMMANDS = [init_db, populate_db]
-BLUEPRINTS = [home_blueprint,authentication_blueprint,user_account_blueprint]
+BLUEPRINTS = [home_blueprint,authentication_blueprint,user_account_blueprint, filter_blueprint]
 
 
 def create_app():

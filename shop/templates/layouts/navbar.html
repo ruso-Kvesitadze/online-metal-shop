@@ -1,9 +1,12 @@
 {% from "macros/macros.html" import is_active%}
 <nav class="navbar navbar-expand-lg bg-body-tertiary p-3 mb-2 bg-dark text-white">
   <div class="container-fluid">
-    <form class="d-flex" role="search">
-      <input  style="margin-left: -25px;" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" style="margin-right:22px;" type="submit">Search</button>
+    <form class="d-flex" role="search" method="post"  enctype="multipart/form-data">
+      {{ itemform.hidden_tag() }}
+      {{itemform.search(style="margin-left: -25px;", class="form-control me-2", placeholder="Search")}}
+      {{itemform.submit(value="Submit", class="btn btn-outline-success", style="margin-right:22px;", type="submit")}}
+      <!-- <input  style="margin-left: -25px;" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" style="margin-right:22px;" type="submit">Search</button> -->
     </form>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,9 +23,9 @@
             aria-expanded="false" style="color:white">
             What are you searching for?
           </a>          <ul class="dropdown-menu bg-dark">
-            <li><a class="dropdown-item gradientcolor" href="#">Shirts</a></li>
-            <li><a class="dropdown-item gradientcolor" href="#">Necklaces</a></li>
-            <li><a class="dropdown-item gradientcolor" href="#">Hoodies</a></li>
+            <li><a class="dropdown-item gradientcolor" href="{{url_for('filter.shirts')}}">Shirts</a></li>
+            <li><a class="dropdown-item gradientcolor" href="{{url_for('filter.necklaces')}}">Necklaces</a></li>
+            <li><a class="dropdown-item gradientcolor" href="{{url_for('filter.hoodies')}}">Hoodies</a></li>
           </ul>
         </li>
 

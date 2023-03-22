@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from shop.extensions import mail
 from shop.views.authentication.forms import RegisterForm, LoginForm, PasswordRecoveryForm, ResetPasswordForm
+from shop.views.filters.forms import ItemForm
 from shop.emails import  send_email, create_key, confirm_key
 from flask_login import login_user, logout_user
 from sqlalchemy import or_
@@ -14,6 +15,7 @@ authentication_blueprint = Blueprint(
 @authentication_blueprint.route("/registration", methods=["GET", "POST"])
 def registration():
     register_form = RegisterForm()
+    form = ItemForm()
     if register_form.validate_on_submit():
 
         if User.query.filter_by(email = register_form.email.data).first():
@@ -33,11 +35,12 @@ def registration():
             send_email("Confirm your account", html, register_form.email.data)
     else:
         print(register_form.errors)
-    return render_template("authentication/registration.html", registerform=register_form)
+    return render_template("authentication/registration.html", registerform=register_form, itemform = form)
 
 #login
 @authentication_blueprint.route("/login", methods=["GET", "POST"])
 def login():
+    form = ItemForm()
     login_form = LoginForm()
     if login_form.validate_on_submit():
         user = User.query.filter(or_(User.email ==login_form.username_or_email.data, User.username == login_form.username_or_email.data )).first()
@@ -56,7 +59,7 @@ def login():
     else:
         print(login_form.errors)
 
-    return render_template("authentication/login.html", loginform=login_form)
+    return render_template("authentication/login.html", loginform=login_form, itemform = form)
 
 #email confiramtion
 @authentication_blueprint.route("/confirm_email/<string:key>", methods=["GET", "POST"])
@@ -73,6 +76,7 @@ def confirm_email(key):
 #forgot password
 @authentication_blueprint.route("/forgot_password", methods=['GET', 'POST'])
 def forgot_password():
+    form = ItemForm()
     recovery_form = PasswordRecoveryForm()
     if recovery_form.validate_on_submit():
         user = User.query.filter_by(email=recovery_form.email.data).first()
@@ -85,11 +89,12 @@ def forgot_password():
             flash( "You have been emailed password reset link" )
         elif not user:
             flash("User wasn't found with this email. Please register first!")
-    return render_template('authentication/forgot_password.html', recoveryform=recovery_form)
+    return render_template('authentication/forgot_password.html', recoveryform=recovery_form, itemform = form)
 
 #reset password
 @authentication_blueprint.route("/reset_password/<string:key>", methods=['GET', 'POST'])
 def reset_password(key):
+    form = ItemForm()
     reset_form = ResetPasswordForm()
     email = confirm_key(key)
     user = User.query.filter_by(email=email).first()
@@ -102,7 +107,7 @@ def reset_password(key):
         user.reset_password = False
         user.save()
         return redirect(url_for('authentication.login'))
-    return render_template("authentication/reset_password.html", resetform=reset_form)
+    return render_template("authentication/reset_password.html", resetform=reset_form, itemform = form)
 
 #logout
 @authentication_blueprint.route("/logout")

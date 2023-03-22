@@ -50,4 +50,25 @@
     margin-top: 20px;
 
 }
+
+.mybutton {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 35%, rgb(58, 40, 90) 100%);
+    border: none;
+    color: white;
+    padding: 13px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width:105px;
+    height: 50px;
+    border-radius: 13px;
+    font-size: 19px;
+    margin-bottom: -10px;
+  }
+
+.whitefont{
+    color: white;
+}
   

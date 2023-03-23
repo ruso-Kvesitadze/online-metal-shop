@@ -3,7 +3,8 @@ from shop.extensions import mail
 from shop.views.authentication.forms import RegisterForm, LoginForm, PasswordRecoveryForm, ResetPasswordForm
 from shop.views.filters.forms import ItemForm
 from shop.emails import  send_email, create_key, confirm_key
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
+from shop.utils import admin_required
 from sqlalchemy import or_
 from shop.models import User
 
@@ -24,7 +25,7 @@ def registration():
             flash("This username is already registered, please enter something different")
         else:
             user = User(username=register_form.username.data,
-                        email=register_form.email.data, password=register_form.password.data)
+                        email=register_form.email.data, password=register_form.password.data, roles = "user")
             user.create()
             user.save()
             flash("Succesfully Registered")
@@ -109,7 +110,6 @@ def reset_password(key):
         return redirect(url_for('authentication.login'))
     return render_template("authentication/reset_password.html", resetform=reset_form, itemform = form)
 
-#logout
 @authentication_blueprint.route("/logout")
 def logout():
     logout_user()

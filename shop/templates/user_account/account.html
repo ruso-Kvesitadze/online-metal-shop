@@ -4,7 +4,14 @@
 
     <div class="container container_style bg-dark" style="margin-top:40px; border-radius:15px;">
         <h1 class="fontchanger gradientcolor" style="text-align: center; font-size:80px;">My Account</h1>
-
+        {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+        <div class="gradientcolor" style="margin-bottom: 10px;">
+            {{ message }}
+        </div>
+        {%endfor%}
+        {% endwith %}
+    
         <form method="post" enctype="multipart/form-data">
             {{ userform.hidden_tag() }}
             <label for="username">{{userform.username.label (class="fontchanger gradientcolor ") }}</label><br>
@@ -21,7 +28,10 @@
             {{ userform.card_info (class="backgroundgradient", id="cardinfo", value = current_user.card_info)}}
             <br>
             {{ userform.submit (value="Save your info",class="backgroundgradient",style="width:200px; margin-top:15px;")
-            }}
+            }}<br>
+            {{ confirmform.submit (value="Confirm my email",class="backgroundgradient",style="width:200px; margin-top:15px;")
+        }}
+
 
         </form><br>
     </div>

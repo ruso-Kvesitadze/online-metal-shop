@@ -9,3 +9,6 @@ class AccountForm(FlaskForm):
     mobile_number = StringField("Your mobile number")
     card_info = StringField("Your card number")
     submit = SubmitField()
+
+class ConfirmForm(FlaskForm):
+    submit = SubmitField()

@@ -1,3 +1,34 @@
+admins = [
+    {
+        "username" : "Qristinius",
+        "email" : "kristinaemail@gmail.com",
+        "password": "mypass123",
+        "role" : "admin",
+        "card_info" : "1245JB3243430090",
+        "mobile_number": "574751781",
+
+    },
+    {
+        "username" : "Anrius",
+        "email" : "anriemail@gmail.com",
+        "password": "mypass1234",
+        "role" : "admin",
+        "card_info" : "1245JB3243430099",
+        "mobile_number": "574751782",
+
+    },
+    {
+        "username" : "Gradienti",
+        "email" : "rusoemail@gmail.com",
+        "password": "mypass1235",
+        "role" : "admin",
+        "card_info" : "1245JB3243430190",
+        "mobile_number": "574751783",
+
+    }
+]
+
+
 products = [
     {
         "type":"Shirt", 
@@ -158,12 +189,4 @@ products = [
         "price": 70,
         "img-link": " https://m.media-amazon.com/images/I/B1i3u9-Q-KS._AC_CLa%7C2140%2C2000%7CB1mEDhBtIXL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_UF894,1000_QL80_.png "
     },
-]
-
-admins = [
-    {
-        "username":"qristinius",
-        "mail":"myemail@gmail.com",
-        "password":"password123"
-    }
 ]

@@ -24,9 +24,7 @@ class SecureAdminView(AdminIndexView):
             else:
                 flash("You need to be logged in to access this page")
                 return redirect(url_for("authentication.login"))
-        
-# class ProductModelView(SecuredModelView):
-#     column_editable_list = []
+
 class UserModelView(SecuredModelView):
     column_exclude_list = ["_password"]
     column_editable_list = ["username", "roles"]

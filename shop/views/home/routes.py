@@ -19,15 +19,6 @@ def home():
             return render_template ("home/home.html", itemform = form, products = product)
     return render_template("home/home.html", products = product, itemform = form)
 
-# @main_blueprint.route("/admin")
-# def admin_pannel():
-#     if current_user.has_roles("admin"):
-#         print(current_user.has_roles("admin"))
-#         return "you are admin"
-#     else:
-#         print(current_user.has_roles("admin"))
-#         return redirect(url_for("main.home"))
-
 @home_blueprint.route("/order/<int:product_id>", methods = ["GET", "POST"])
 @login_required
 def order( product_id = None):

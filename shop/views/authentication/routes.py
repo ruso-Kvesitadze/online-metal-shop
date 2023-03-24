@@ -3,8 +3,7 @@ from shop.extensions import mail
 from shop.views.authentication.forms import RegisterForm, LoginForm, PasswordRecoveryForm, ResetPasswordForm
 from shop.views.filters.forms import ItemForm
 from shop.emails import  send_email, create_key, confirm_key
-from flask_login import login_user, logout_user, login_required, current_user
-from shop.utils import admin_required
+from flask_login import login_user, logout_user
 from sqlalchemy import or_
 from shop.models import User
 
